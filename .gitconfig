@@ -1,0 +1,81 @@
+[user]
+	name = Trynity Mirell
+	email = trynity@mirell.org
+
+[alias]
+	# Two-character shortcuts
+	ci = commit
+	cl = clone
+	st = status
+	co = checkout
+	sm = submodule
+	cp = cherry-pick
+	dt = difftool
+	mt = mergetool
+
+	# Plural shortcuts
+	remotes = remote -v
+	branches = branch -a
+	tags = tag -l
+	submodules = submodule status
+
+	# Helpful shortcuts
+	unstage = reset HEAD --
+	track = checkout --track
+	upstream = remote add upstream
+	discard = checkout --
+
+	# Make submodule cloning easier
+	clone = clone --recursive
+
+[hub]
+	protocol = ssh
+	host = <%= @config['hub']['host'] %>
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+
+[advice]
+	pushNonFastForward = false
+
+[branch]
+	autosetupmerge = true
+
+[rerere]
+	enabled = true
+
+[difftool]
+	prompt = false
+
+[push]
+	default = matching
+
+[mergetool]
+	prompt = false
+	keepBackup = false
+	keepTemporaries = false
+
+# Platform Specific Settings
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[diff]
+	renames = copies
+	mnemonicprefix = true
+	tool = Kaleidoscope
+[merge]
+	tool = Kaleidoscope
+[core]
+	editor = "subl -nw"
+
+[core]
+	preloadindex = true
+	fsyncobjectfiles = true
+	excludesfile = ~/.gitignore
