@@ -41,7 +41,7 @@ perlbrew_paths=()
 for i in $path; do
 	if [[ $i  =~ ".nvm" ]]; then
 		nvm_paths+=$i
-	elif [[ $i =~ ".rvm" ]]; then
+	elif [[ $i =~ ".rvm/gems" ]]; then
 		rvm_paths+=$i
 	elif [[ -n $PERLBREW_ROOT && $i =~ $PERLBREW_ROOT ]]; then
 		perlbrew_paths+=$i
